@@ -52,7 +52,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainAppStructure() {
     // 1. Estado de la pantalla activa
-    var currentScreen by remember { mutableStateOf(ScreenState.Profile.route) }
+    var currentScreen by remember { mutableStateOf(ScreenState.Cart.route) }
 
     val bottomBarRoutes = listOf(
         ScreenState.Profile.route,
