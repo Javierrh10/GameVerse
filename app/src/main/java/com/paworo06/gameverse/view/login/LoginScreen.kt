@@ -28,7 +28,8 @@ val InputFieldBackground = Color(0xFF282038)
 
 @Composable
 fun LoginScreen(
-    onLoginSuccess: () -> Unit
+    onLoginSuccess: () -> Unit,
+    onNavigateToRegister: () -> Unit
 ) {
     var usernameOrEmail by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -132,7 +133,8 @@ fun LoginScreen(
                 color = PrimaryActionButton,
                 style = MaterialTheme.typography.bodyMedium,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.clickable { println("Ir a registro") }
+                modifier = Modifier.clickable { onNavigateToRegister() }
+
             )
         }
     }
@@ -193,6 +195,9 @@ fun PreviewLoginScreen() {
         )
     ) {
         // Llama a LoginScreen, que usará la imagen gracias a la magia de la Preview
-        LoginScreen(onLoginSuccess = {})
+        LoginScreen(
+            onLoginSuccess = {},
+            onNavigateToRegister = {}
+        )
     }
 }

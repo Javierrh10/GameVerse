@@ -27,7 +27,8 @@ val TextMuted = Color(0xFFCCCCCC)
 val InputFieldBackground = Color(0xFF282038)
 
 @Composable
-fun SignupScreen() {
+fun SignupScreen(onNavigateToLogin: () -> Unit
+    ) {
     // --- 1. ESTADOS PARA LOS NUEVOS CAMPOS ---
     var username by remember { mutableStateOf("") } // NUEVO: Nombre de Usuario
     var email by remember { mutableStateOf("") }       // NUEVO: Correo Electrónico
@@ -181,7 +182,7 @@ fun SignupScreen() {
                 color = PrimaryActionButton,
                 style = MaterialTheme.typography.bodyMedium,
                 fontWeight = FontWeight.Bold,
-                modifier = Modifier.clickable { println("Ir a Login") }
+                modifier = Modifier.clickable { onNavigateToLogin()}
             )
         }
     }
@@ -241,6 +242,6 @@ fun PreviewSignupScreen() {
         primary = PrimaryActionButton
     )) {
         // En un entorno de desarrollo, asegúrate de que R.drawable.login_logo exista.
-        SignupScreen()
+        SignupScreen(onNavigateToLogin = {})
     }
 }

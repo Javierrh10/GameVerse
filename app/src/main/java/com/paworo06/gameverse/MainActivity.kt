@@ -24,6 +24,7 @@ import com.paworo06.gameverse.view.login.LoginScreen
 import com.paworo06.gameverse.view.explore.ExploreScreen
 import com.paworo06.gameverse.view.home.HomeScreen
 import com.paworo06.gameverse.view.navegation.BottomNavigationBar
+import com.paworo06.gameverse.view.register.SignupScreen
 
 // Define las posibles pantallas como un Sealed Class para seguridad de tipos
 sealed class ScreenState(val route: String) {
@@ -92,30 +93,35 @@ fun MainAppStructure() {
                     )
 
                     ScreenState.Cart.route -> CartScreen()
-                    // Puedes usar un placeholder o las pantallas reales aquí
+
                     ScreenState.Home.route -> HomeScreen()
 
                     ScreenState.Explore.route -> ExploreScreen()
 
-
-                    ScreenState.Login.route -> LoginScreen(
-                        onLoginSuccess = { currentScreen = ScreenState.Home.route }
-                    )
                 }
             }
         }
     } else if (currentScreen == ScreenState.Login.route) {
         LoginScreen(
-            onLoginSuccess = {
+            onLoginSuccess = {  currentScreen = ScreenState.Home.route},
 
-                currentScreen = ScreenState.Home.route
+            onNavigateToRegister = {
+                currentScreen = ScreenState.Register.route
+
+            }
+        )
+    } else if (currentScreen == ScreenState.Register.route) {
+        SignupScreen(
+            onNavigateToLogin = {
+                currentScreen = ScreenState.Login.route
             }
         )
     }
 }
 
 
-// *** IMPORTANTE: Necesitas las rutas correctas aquí ***
+// *
+// ** IMPORTANTE: Necesitas las rutas correctas aquí ***
 // Función PlaceholderScreen (para que compile si no tienes las vistas)
 @Composable
 fun PlaceholderScreen(name: String) {
