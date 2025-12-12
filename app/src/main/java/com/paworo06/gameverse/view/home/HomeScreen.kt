@@ -44,9 +44,9 @@ fun HomeScreen(
     // 1. Obtener los datos del repositorio
     val allGames = gameRepository.getAllGames()
 
-    // Simulación: Tomamos los primeros 3 para destacados
-    val featuredGames = allGames.take(3)
-    // Para recientes mostramos TODOS los juegos (así se ven los 5 que tienes)
+    // Ahora mostramos TODOS los juegos en destacados también
+    val featuredGames = allGames
+    // Para recientes mostramos TODOS los juegos
     val recentGames = allGames 
 
     // LazyColumn para toda la pantalla
@@ -71,7 +71,7 @@ fun HomeScreen(
             Spacer(modifier = Modifier.height(24.dp))
 
             // 5. Título de Recientes
-            SectionTitle("Catálogo Completo") // Cambié el título para reflejar que son todos
+            SectionTitle("Catálogo Completo")
         }
 
         // 6. Lista Vertical de Juegos
